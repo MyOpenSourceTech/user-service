@@ -37,7 +37,7 @@ public class UserController {
         if (userOptional.isEmpty()) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(userOptional.get(), HttpStatus.FOUND);
+            return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);
         }
     }
 }
