@@ -52,4 +52,16 @@ class UserServiceTest {
 
         assertEquals(createdUser, savedUser);
     }
+
+    @Test
+    public void shouldReturnUserByName() {
+        String name = random.nextObject(String.class);
+        User user = random.nextObject(User.class);
+
+        when(userRepository.findByName(name)).thenReturn(Optional.of(user));
+
+        Optional<User> optionalUser = target.getByName(name);
+
+        assertEquals(user, optionalUser.get());
+    }
 }

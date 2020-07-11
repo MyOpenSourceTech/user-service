@@ -61,4 +61,27 @@ class UserControllerTest {
 
         assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
     }
+
+    @Test
+    public void shouldReturnUserByName() {
+        String name = random.nextObject(String.class);
+        User user = random.nextObject(User.class);
+
+        when(userService.getByName(name)).thenReturn(Optional.of(user));
+
+        ResponseEntity<User> responseEntity = target.getByName(name);
+
+        assertEquals(user, responseEntity.getBody());
+        assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
+    }
+
+    @Test
+    public void shouldReturnNotFoundStatusWhileUserNameIsMissing() {
+        String name = random.nextObject(String.class);
+        when(userService.getByName(name)).thenReturn(Optional.empty());
+
+        ResponseEntity<User> responseEntity = target.getByName(name);
+
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+    }
 }

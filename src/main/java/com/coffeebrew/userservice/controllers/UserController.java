@@ -31,4 +31,13 @@ public class UserController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<User> getByName(@RequestParam("name") String name) {
+        Optional<User> userOptional = userService.getByName(name);
+        if (userOptional.isEmpty()) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(userOptional.get(), HttpStatus.FOUND);
+        }
+    }
 }
