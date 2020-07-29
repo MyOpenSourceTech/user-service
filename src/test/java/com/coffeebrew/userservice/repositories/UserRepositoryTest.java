@@ -2,6 +2,7 @@ package com.coffeebrew.userservice.repositories;
 
 import com.coffeebrew.userservice.models.User;
 import org.jeasy.random.EasyRandom;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,12 @@ class UserRepositoryTest {
     @BeforeEach
     void setUp() {
         random = new EasyRandom();
+        userRepository.deleteAll();
+    }
+
+    @AfterEach
+    void tearDown() {
+        userRepository.deleteAll();
     }
 
     @Test
