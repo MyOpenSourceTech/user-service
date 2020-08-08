@@ -72,7 +72,7 @@ class UserControllerTest {
         ResponseEntity<User> responseEntity = target.getByName(name);
 
         assertEquals(user, responseEntity.getBody());
-        assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 
     @Test
